@@ -1,0 +1,35 @@
+# Pull the base image
+FROM christopher102994/docker-base-img-gui:debian-10
+MAINTAINER chris102994<chris102994@yahoo.com>
+ARG BUILD_DATE
+ARG VERSION
+
+ENV APP_NAME=MusicBrainzPicard
+
+RUN echo "##### Downloading Runtime Packages #####" && \
+		install \
+			picard && \
+	echo "#### Setup MusicBrainzPicard ####" && \
+		mkdir -p \
+			/config/data \
+			/config/log  \
+			/unsorted \
+			/sorted && \
+		chown -R 900:900 /unsorted && \
+		chmod -R 0755 /unsorted && \
+		chown -R 900:900 /sorted && \
+		chmod -R 0755 /sorted && \
+    echo "##### App Setup #####" && \
+		sed -i 's#APP_NAME#MusicBrainzPicard#g' /etc/xdg/openbox/menu.xml && \
+		sed -i 's#APP_ICON_LOC#/usr/share/icons/hicolor/16x16/apps/org.musicbrainz.Picard.png#g' /etc/xdg/openbox/menu.xml && \
+		sed -i 's#APP_COMMAND#/usr/bin/picard -N >> /config/log/MusicBrainzPicard.log#g' /etc/xdg/openbox/menu.xml && \
+		sed -i 's#APP_COMMAND#/usr/bin/picard -N >> /config/log/MusicBrainzPicard.log#g' /etc/xdg/openbox/autostart && \
+		cp /usr/share/icons/hicolor/16x16/apps/org.musicbrainz.Picard.png /etc/noVNC/app/images/icons/novnc-16x16.png && \
+		export HOME=/config
+
+# VNC Web Interface VNC
+EXPOSE 5700 
+#Work Dir
+WORKDIR /mnt
+# Add Local FIles
+COPY rootfs/ /
