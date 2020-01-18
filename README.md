@@ -3,8 +3,7 @@
 [![https://www.musicbrainzpicard.org/](https://picard.musicbrainz.org/static/img/picard-icon-large.svg)](https://www.picard.musicbrainz.org/)
 
 [![Build Status](https://travis-ci.com/chris102994/docker-musicbrainzpicard.svg?branch=master)](https://travis-ci.com/chris102994/docker-musicbrainzpicard)
- [![Image Size](https://img.shields.io/microbadger/image-size/christopher102994/docker-musicbrainzpicard/debian-10)](https://hub.docker.com/repository/docker/christopher102994/docker-musicbrainzpicard)
- [![Image Layers](https://img.shields.io/microbadger/layers/christopher102994/docker-musicbrainzpicard/debian-10)](https://hub.docker.com/repository/docker/christopher102994/docker-musicbrainzpicard)
+[![Microbadger Size & Layers](https://images.microbadger.com/badges/image/christopher102994/docker-musicbrainzpicard.svg)](https://microbadger.com/images/christopher102994/docker-musicbrainzpicard "Get your own image badge on microbadger.com")
  [![Image Pulls](https://img.shields.io/docker/pulls/christopher102994/docker-musicbrainzpicard)](https://hub.docker.com/repository/docker/christopher102994/docker-musicbrainzpicard)
 
 ## Outside Packages
