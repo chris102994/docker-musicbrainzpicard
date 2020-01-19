@@ -3,7 +3,9 @@ FROM christopher102994/docker-base-img-gui:debian-10
 MAINTAINER chris102994<chris102994@yahoo.com>
 ARG BUILD_DATE
 ARG VERSION
-
+ARG VCS_REF
+LABEL org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/chris102994/docker-musicbrainzpicard"
 ENV APP_NAME=MusicBrainzPicard
 
 RUN echo "##### Downloading Runtime Packages #####" && \
