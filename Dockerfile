@@ -24,13 +24,7 @@ RUN echo "##### Downloading Runtime Packages #####" && \
     echo "##### App Setup #####" && \
 		sed -i 's#APP_NAME#MusicBrainzPicard#g' /etc/xdg/openbox/menu.xml && \
 		sed -i 's#APP_ICON_LOC#/usr/share/icons/hicolor/16x16/apps/org.musicbrainz.Picard.png#g' /etc/xdg/openbox/menu.xml && \
-		sed -i 's#APP_COMMAND#/usr/bin/picard -N >> /config/log/MusicBrainzPicard.log#g' /etc/xdg/openbox/menu.xml && \
-		sed -i 's#APP_COMMAND#/usr/bin/picard -N >> /config/log/MusicBrainzPicard.log#g' /etc/xdg/openbox/autostart && \
+		sed -i 's#APP_COMMAND#/usr/bin/picard -N >> /config/log/MusicBrainzPicard.log#g' /app/start_app.sh && \
 		cp /usr/share/icons/hicolor/16x16/apps/org.musicbrainz.Picard.png /etc/noVNC/app/images/icons/novnc-16x16.png
-
-# VNC Web Interface VNC
-EXPOSE 5700 
 #Work Dir
 WORKDIR /music
-# Add Local FIles
-COPY rootfs/ /
