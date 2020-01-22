@@ -9,7 +9,7 @@ LABEL org.label-schema.vcs-ref=$VCS_REF \
 ENV APP_NAME=MusicBrainzPicard
 
 RUN echo "##### Downloading Runtime Packages #####" && \
-		install \
+		inst-pkg \
 			picard && \
 	echo "#### Setup MusicBrainzPicard ####" && \
 		mkdir -p \
