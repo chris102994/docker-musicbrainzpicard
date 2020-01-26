@@ -25,5 +25,6 @@ RUN echo "##### Downloading Runtime Packages #####" && \
     echo "##### App Setup #####" && \
 		sed -i 's#APP_COMMAND#/usr/bin/picard -N >> /config/log/MusicBrainzPicard.log#g' /app/start_app.sh && \
 		cp /usr/share/icons/hicolor/16x16/apps/org.musicbrainz.Picard.png /etc/noVNC/app/images/icons/novnc-16x16.png
+VOLUME		["/music"]
 #Work Dir
 WORKDIR /music
