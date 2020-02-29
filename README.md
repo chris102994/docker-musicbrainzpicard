@@ -18,7 +18,7 @@ docker run \
 	-v </path/to/appdata/config>:/config \
   	-v </path/to/music>:/music \
 	--restart unless-stopped \
-	christopher102994/docker-musicbrainzpicard:debian-10
+	christopher102994/docker-musicbrainzpicard:latest
 ```
 
 ## Parameters
