@@ -11,21 +11,26 @@ services:
   - docker
 
 git:
-  submodules: true
+  submodules: false
 
 env:
   global:
   - DOCKER_REPO=christopher102994
   - DOCKER_NAME=docker-musicbrainzpicard
-  - DOCKER_FILE=Dockerfile
-  - IMAGE_TAG=debian-10
-  - BASE_IMAGE=christopher102994/docker-base-img-gui:debian-10
 
-script:
-  - tools/scripts/make_container.sh
-
-deploy:
-  provider: script
-  script: tools/scripts/push_to_registry.sh
-  on:
-    branch: master
+jobs:
+  include:
+  - stage: Debian Container
+    script:
+      - git submodule update --init --recursive
+      - source tools/scripts/load_env_files.sh versions/debian-10.env
+      - source tools/scripts/versioning.sh 
+      - tools/scripts/make_container.sh
+    deploy:
+        provider: script
+        script: tools/scripts/push_to_registry.sh
+  - stage: Git Tag
+    script: 
+      - git submodule update --init --recursive
+      - source tools/scripts/versioning.sh
+      - tools/scripts/push_git_tag.sh
