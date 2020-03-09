@@ -17,18 +17,19 @@ jobs:
   include:
   - stage: Debian Container
     script:
-      - git submodule update --init --recursive
-      - source tools/scripts/load_env_files.sh versions/debian-10.env versions/docker-picard.env
-      - source tools/scripts/versioning.sh 
-      - tools/scripts/make_container.sh
-    deploy:
-        provider: script
-        script: tools/scripts/push_to_registry.sh
+      - git submodule update --init --remote
+      - |
+        tools/build/build_container.sh \
+        -e versions/debian-10.env \
+        -e versions/docker-picard.env \
+        -b true \
+        -p true
 
   - stage: Git Tag & Docker Hub README
     script: 
-      - git submodule update --init --recursive
-      - source tools/scripts/load_env_files.sh versions/docker-picard.env
-      - source tools/scripts/versioning.sh
-      - tools/scripts/push_git_tag.sh
-      - tools/scripts/push_readme_to_dockerhub.sh
+      - git submodule update --init --remote
+      - |
+        tools/build/build_container.sh \
+        -e versions/docker-picard.env \
+        -g true \
+        -r true
