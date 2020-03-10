@@ -20,16 +20,16 @@ jobs:
       - git submodule update --init --remote
       - |
         tools/build/build_container.sh \
-        -e versions/debian-10.env \
-        -e versions/docker-picard.env \
-        -b true \
-        -p true
+        --envfile versions/debian-10.env \
+        --envfile versions/docker-picard.env \
+        --build \
+        --pushdr
 
   - stage: Git Tag & Docker Hub README
     script: 
       - git submodule update --init --remote
       - |
         tools/build/build_container.sh \
-        -e versions/docker-picard.env \
-        -g true \
-        -r true
+        --envfile versions/docker-picard.env \
+        --pushgt \
+        --pushrm
