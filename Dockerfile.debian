@@ -9,9 +9,16 @@ LABEL org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/chris102994/docker-musicbrainzpicard"
 ENV APP_NAME=MusicBrainzPicard
 
+# Need the recommends for picard's full features.
 RUN echo "##### Downloading Runtime Packages #####" && \
-		inst-pkg \
-			picard && \
+		apt-get -q update && \
+		apt-get install -y picard && \
+		apt-get -q clean && \
+		rm -rf \
+			/var/lib/apt/lists/* \
+			/var/log/apt/* \
+			/var/log/dpkg.log \
+			/var/log/alternatives.log && \
 	echo "#### Setup MusicBrainzPicard ####" && \
 		mkdir -p \
 			/config/data \
